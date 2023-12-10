@@ -1,0 +1,9 @@
+/* #shopid:hover {
+    color: green;
+    background-color: bisque;
+} */
+
+.card-body .shoptitle,
+.shopticone:hover {
+    color: green;
+}

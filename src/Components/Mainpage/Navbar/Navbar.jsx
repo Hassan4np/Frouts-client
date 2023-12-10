@@ -2,6 +2,7 @@ import logo from "../../../assets/pageimg/Logo.png"
 import { IoIosHeartEmpty } from "react-icons/io";
 import { AiOutlineShopping } from "react-icons/ai";
 import { TbPhoneCall } from "react-icons/tb";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
     return (
@@ -43,10 +44,10 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li><a>Home</a></li>
-                        <li><a>Shop</a></li>
-                        <li><a>Page</a></li>
-                        <li><a>About</a></li>
+                       <NavLink to="/"> <li><a>Home</a></li></NavLink>
+                       <NavLink to="/shop"> <li><a>Shop</a></li></NavLink>
+                       <NavLink to="/"> <li><a>Home</a></li></NavLink>
+                     
                     </ul>
                 </div>
                 </div>

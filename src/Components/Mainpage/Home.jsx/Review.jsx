@@ -1,8 +1,4 @@
 
-import p1 from "../../../assets/menus/Image (8).png"
-import p2 from "../../../assets/menus/Image (6).png"
-
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -27,7 +23,7 @@ const Review = () => {
                 modules={[Pagination]}
                 className="mySwiper"
             >
-                <SwiperSlide className="">
+                <SwiperSlide className="mr-10">
                     <div className="card w-[424px] h-[254px] bg-white shadow-xl border  mt-5 ">
                         <div className="card-body ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="26" viewBox="0 0 32 26" fill="none">

@@ -1,7 +1,7 @@
 import Carosolsection from "./Carosolsection";
 import Category from "./Category";
 import FeatureProducts from "./FeatureProducts";
-import Footer from "./Footer";
+
 import FooterHead from "./FooterHead";
 import Galary from "./Galary";
 import NewestProducts from "./NewestProducts";
@@ -42,7 +42,7 @@ const Home = () => {
             <div  className="bg-[#EDF2EE] py-2 mt-5 mb-5">
                 <FooterHead ></FooterHead>
             </div>
-            <Footer></Footer>
+         
 
         </div>
     );
