@@ -3,7 +3,9 @@ import b from "../../../assets/category/category2.png"
 import apple from "../../../assets/menus/Image (3).png"
 import Rating from "react-rating";
 import { MdOutlineStarOutline } from "react-icons/md";
-import { FaArrowRight, FaCartPlus, FaFacebook, FaInstagram, FaStar, FaTwitter } from "react-icons/fa";
+import { FaCartPlus, FaFacebook, FaInstagram, FaStar, FaTwitter } from "react-icons/fa";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 
 
@@ -77,6 +79,33 @@ const Itemdetails = () => {
                     <h5 className="text-base font-medium text-black">Category: <span className="text-gray-500 font-normal text-[14px]">Fish</span></h5>
                     <h5 className="text-base font-medium text-black">Tag: <span className="text-gray-500 font-normal text-[14px]">Health</span></h5>
                 </div>
+            </div>
+            <div className="text-center" >
+                <Tabs className="min-h-[150px]">
+                    <TabList>
+                        <Tab>Descriptions</Tab>
+                        <Tab>Additional Information</Tab>
+                        <Tab>Customer Feedback</Tab>
+                    </TabList>
+
+                    <TabPanel className="text-start">
+                        <div className="flex justify-between">
+                            <h2 className="w-1/2">Any content 1</h2>
+                            <div className="relative w-1/2" >
+                                <iframe width="420" height="315"
+                                    src="https://youtu.be/J7a9MLbpqZ4?si=qGigpmOY9POYH6jK">
+                                </iframe>
+                            </div>
+
+                        </div>
+                    </TabPanel>
+                    <TabPanel className="text-start">
+                        <h2>Any content 2</h2>
+                    </TabPanel>
+                    <TabPanel className="text-start">
+                        <h2>Any content 3</h2>
+                    </TabPanel>
+                </Tabs>
             </div>
         </div>
     );
