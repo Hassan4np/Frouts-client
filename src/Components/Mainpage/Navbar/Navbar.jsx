@@ -50,6 +50,8 @@ const Navbar = () => {
                        <NavLink to="/login"> <li><a>Login</a></li></NavLink>
                        <NavLink to="/signup"> <li><a>Signup</a></li></NavLink>
                      
+                       <NavLink to="/cart"> <li><a>My Cart</a></li></NavLink>
+                     
                     </ul>
                 </div>
                 </div>

@@ -6,6 +6,7 @@ import ShopPage from "../ShopPage/ShopPage";
 import Itemdetails from "../ProductsDetails/Itemdetails";
 import Signin from "../Register/Signin";
 import Signup from "../Register/Signup";
+import Cart from "../ShopPage/Cart";
 
 const Mybrowser = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const Mybrowser = createBrowserRouter([
         path:'signup',
         element:<Signup></Signup>
       },
+      {
+        path:'cart',
+        element:<Cart></Cart>
+      }
      
       
       
