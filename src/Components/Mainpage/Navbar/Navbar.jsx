@@ -3,8 +3,18 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { AiOutlineShopping } from "react-icons/ai";
 import { TbPhoneCall } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
+import useAuth from "../Hooks.jsx/useAuth";
 
 const Navbar = () => {
+    const {user,UserLogout} = useAuth();
+    const hangellogout=()=>{
+        UserLogout()
+        .then(res=>{
+            console.log(res.user)
+        }).catch(error=>{
+            console.log(error)
+        })
+    }
     return (
         <div>
             <div className="flex justify-around mt-5">
@@ -47,10 +57,11 @@ const Navbar = () => {
                        <NavLink to="/"> <li><a>Home</a></li></NavLink>
                        <NavLink to="/shop"> <li><a>Shop</a></li></NavLink>
                        <NavLink to="/"> <li><a>Home</a></li></NavLink>
-                       <NavLink to="/login"> <li><a>Login</a></li></NavLink>
-                       <NavLink to="/signup"> <li><a>Signup</a></li></NavLink>
-                     
+                       {
+                        user?<button onClick={hangellogout}><li><a>logout</a></li></button>:<NavLink to="/login"> <li><a>Login</a></li></NavLink>
+                       }
                        <NavLink to="/cart"> <li><a>My Cart</a></li></NavLink>
+                       <NavLink to="/daseboard/userhome"> <li><a>Daseboard</a></li></NavLink>
                      
                     </ul>
                 </div>

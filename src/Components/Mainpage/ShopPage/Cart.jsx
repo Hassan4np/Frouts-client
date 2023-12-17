@@ -1,7 +1,46 @@
-import c from "../../../assets/menus/Image (18).png"
-import c1 from "../../../assets/menus/Image (4).png"
+import { useQuery } from "@tanstack/react-query";
+
+
+import useAxousSecret from "../Hooks.jsx/useAxousSecret";
+import Swal from "sweetalert2";
+import { useState } from "react";
+import useCards from "../Hooks.jsx/useCards";
+import { Link } from "react-router-dom";
+import useAuth from "../Hooks.jsx/useAuth";
+
 
 const Cart = () => {
+    const { user } = useAuth();
+    const [cards, refetch] = useCards(user?.email);
+    console.log(cards)
+    const [quantity, setquantity] = useState(1);
+
+    const axoussecrt = useAxousSecret();
+   
+    const handledelete = (id) => {
+        console.log(id)
+        axoussecrt.delete(`/cards/${id}`)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.deletedCount > 0) {
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: `Your item successfully deleted`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                refetch()
+
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+    console.log(quantity)
+    const totalprice = cards?.reduce((total, current) => total + current.price, 0).toFixed(2);
+    console.log(totalprice)
     return (
         <div className="min-h-[200px] py-10">
             <h1 className="text-3xl font-semibold text-black text-center py-5">My Shopping Cart</h1>
@@ -14,70 +53,47 @@ const Cart = () => {
                                 <tr className="uppercase">
                                     <th >Priduct</th>
                                     <th>Price</th>
-                                    <th>Quantity</th>
+
                                     <th>Remove</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="border mb-1">
-                                    <td className="">
-                                        <div className="flex items-center gap-3">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={c} alt="Avatar Tailwind CSS Component" />
+                                {
+                                    cards?.map(it => <tr key={it?._id} className="border mb-1">
+                                        <td className="">
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="mask mask-squircle w-12 h-12">
+                                                        <img src={it?.img} alt="Avatar Tailwind CSS Component" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="font-bold">{it?.name}</div>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <div className="font-bold">Tmaato</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        $56
+                                        </td>
+                                        <td>
+                                            ${it.price}
 
-                                    </td>
-                                    <td>5</td>
-                                    <th>
-                                        <button className="btn btn-ghost btn-xs">x</button>
-                                    </th>
-                                </tr>
-                                <tr className="border mb-1">
-                                    <td className="">
-                                        <div className="flex items-center gap-3">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={c1} alt="Avatar Tailwind CSS Component" />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div className="font-bold">Palon</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        $158
+                                        </td>
 
-                                    </td>
-                                    <td>5</td>
-                                    <th>
-                                        <button className="btn btn-ghost btn-xs">x</button>
-                                    </th>
-                                </tr>
-                                {/* -------- */}
-
-
+                                        <th>
+                                            <button onClick={() => handledelete(it?._id)} className="btn text-red-500 btn-sm">x</button>
+                                        </th>
+                                    </tr>)
+                                }
 
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div className="w-1/4">
-                    <div className=" h-[200px] border px-5 ">
-                        <h4 className="text-xl font-medium p-4">Cart Total</h4>
+                    <div className=" h-[250px] border px-5 ">
+                        <h4 className="text-xl font-medium py-2">Cart Total</h4>
                         <div className="space-y-2">
                             <div className="flex justify-between">
                                 <p className="text-[14px] font-medium text-[#4D4D4D]">Subtotal</p>
-                                <p className="text-[14px] font-medium text-[#1A1A1A]" >$96.00</p>
+                                <p className="text-[14px] font-medium text-[#1A1A1A]" >${totalprice}</p>
                             </div>
                             <div className="flex justify-between">
                                 <p className="text-[14px] font-medium text-[#1A1A1A]">sopping</p>
@@ -86,7 +102,13 @@ const Cart = () => {
                             <hr />
                             <div className="flex justify-between">
                                 <p className="text-base font-medium text-[#1A1A1A]">total</p>
-                                <p className="text-base font-medium text-[#1A1A1A]" >$100.30</p>
+                                <p className="text-base font-medium text-[#1A1A1A]" >${totalprice}</p>
+                            </div>
+                            <div className="py-4">
+                                {
+                                    cards?.length > 0 ? <Link to="/checkout">  <button className="btn text-base font-semibold rounded-3xl text-white bg-green-500 mt-2 w-full">Proceed to checkout</button></Link> :
+                                          <button disabled className="btn text-base font-semibold rounded-3xl text-white bg-green-500 mt-2 w-full">Proceed to checkout</button>
+                                }
                             </div>
                         </div>
 

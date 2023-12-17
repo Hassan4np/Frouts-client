@@ -6,37 +6,52 @@ import Rating from "react-rating";
 import { MdOutlineStarOutline } from "react-icons/md";
 import aple from "../../../assets/menus/Image.png"
 import { IoBagHandleOutline } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import "./Shoppage.css"
 import { Link } from "react-router-dom";
 
+import useAxousPublic from "../Hooks.jsx/useAxousPublic";
+import { useQuery } from "@tanstack/react-query";
+
 
 const ShopPage = () => {
-    const [data, setdata] = useState([]);
-    useEffect(() => {
-        fetch('Projducts.json')
-            .then(res => res.json())
-            .then(data => {
-                setdata(data)
-            })
-    }, [])
-    console.log(data)
+    const [categorydata, setcategorydata] = useState('');
+    const [sortprice, setsortprice] = useState('');
+
+    const axousPublic = useAxousPublic();
+    const { refetch, data:datas , isLoading } = useQuery({
+        queryKey: ['/productscategory', categorydata,sortprice],
+        queryFn: async () => {
+            const res = await axousPublic.get(`/productscategory?category=${categorydata}&price=${sortprice==='High-to-low'?'asc':'desc'}`);
+            return res.data
+        }
+    })
+
+  console.log(sortprice)
+    console.log(datas)
+    console.log(categorydata)
+
     return (
         <div className="min-h-[450px]">
             <HeaderBannar imgg={b}></HeaderBannar>
             <div className="flex justify-around mt-5" >
                 <div className="">
-                    <button className="btn btn-primary px-8 py-3">filter</button>
+                    <select onClick={(e)=>setcategorydata(e?.target?.value)} name="category" className="select select-bordered w-[166px] h-10 text-[14px] font-normal text-[#4D4D4D]">
+                        <option disabled selected>Select Category</option>
+                        <option>Vegetable</option>
+                        <option>Fish</option>
+                        <option>Meat</option>
+                    </select>
                 </div>
                 <div className="flex">
                     <h3 className="mr-2 mt-3 text-[14px] font-normal text-[#808080]">Sort by</h3>
-                    <select className="select select-bordered w-[166px] h-10 text-[14px] font-normal text-[#4D4D4D]">
+                    <select onClick={(e)=>setsortprice(e?.target?.value)} className="select select-bordered w-[166px] h-10 text-[14px] font-normal text-[#4D4D4D]">
                         <option disabled selected>select one</option>
-                        <option>Han Solo</option>
-                        <option>Greedo</option>
+                        <option>High-to-low</option>
+                        <option>Low-to-higth</option>
                     </select>
                 </div>
-                <h5 className="text-base font-normal text-[#666]"><span className="text-black font-semibold"> 52</span>Result font</h5>
+                <h5 className="text-base font-normal text-[#666]"><span className="text-black font-semibold">{datas?.length}</span>Result font</h5>
             </div>
             <div className="flex">
                 <div className="w-1/4">
@@ -92,28 +107,28 @@ const ShopPage = () => {
                     </div>
                 </div>
                 <div className="w-3/4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-            {
-                data.map(item => <Link key={item.name} to="/itemdetails"><div  id='shopid' className="card w-[312px] h-[406px] bg-base-100 shadow-xl border mt-5 bg-[#E6E6E6)]">
-                <figure className="px-10 h-[312px] w-[302px] p-5">
-                    <img src={item.img} alt="Shoes" className="rounded-xl" />
-                </figure>
-                <div className="card-body ">
-                    <h2  className="card-title text-[14px] font-normal shoptitle text-[#4D4D4D]">{item.name}</h2>
-                    <div className="flex justify-between">
-                        <p className="text-[16px] font-medium">${item.price}</p>
-                        <IoBagHandleOutline className="text-2xl shopticone "></IoBagHandleOutline>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                        {
+                            datas?.map(item => <Link key={item.name} to={`/itemdetails/${item._id}`}><div id='shopid' className="card w-[312px] h-[406px] bg-base-100 shadow-xl border mt-5 bg-[#E6E6E6)]">
+                                <figure className="px-10 h-[312px] w-[302px] p-5">
+                                    <img src={item.img} alt="Shoes" className="rounded-xl" />
+                                </figure>
+                                <div className="card-body ">
+                                    <h2 className="card-title text-[14px] font-normal shoptitle text-[#4D4D4D]">{item.name}</h2>
+                                    <div className="flex justify-between">
+                                        <p className="text-[16px] font-medium">${item.price}</p>
+                                        <IoBagHandleOutline className="text-2xl shopticone "></IoBagHandleOutline>
+                                    </div>
+                                    <Rating className="text-[#FF6A00]"
+                                        placeholderRating={item.rating}
+                                        emptySymbol={<MdOutlineStarOutline />}
+                                        placeholderSymbol={<FaStar />}
+                                        fullSymbol={<FaStar />}
+                                    />
+                                </div>
+                            </div></Link>)
+                        }
                     </div>
-                    <Rating className="text-[#FF6A00]"
-                        placeholderRating={item.rating}
-                        emptySymbol={<MdOutlineStarOutline />}
-                        placeholderSymbol={<FaStar />}
-                        fullSymbol={<FaStar />}
-                    />
-                </div>
-            </div></Link>)
-            }
-        </div>
                 </div>
             </div>
 

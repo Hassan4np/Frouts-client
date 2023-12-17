@@ -1,30 +1,72 @@
 import HeaderBannar from "../Global/HeaderBannar";
 import b from "../../../assets/category/category2.png"
-import apple from "../../../assets/menus/Image (3).png"
+
 import Rating from "react-rating";
 import { MdOutlineStarOutline } from "react-icons/md";
 import { FaCartPlus, FaFacebook, FaInstagram, FaStar, FaTwitter } from "react-icons/fa";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { useParams } from "react-router-dom";
+import useItem from "../Hooks.jsx/useItem";
+import { axiospublic } from "../Hooks.jsx/useAxousPublic";
+import Swal from "sweetalert2";
+import useAuth from "../Hooks.jsx/useAuth";
+
+
 
 
 
 const Itemdetails = () => {
+    const { id } = useParams();
+    const {user} = useAuth();
+
+    console.log(id)
+    const [item, refetch] = useItem(id);
+    console.log(item)
+
+    const handlecart = () => {
+        const cartinfo = {
+            name: item.name,
+            img: item.img,
+            price: item.price,
+            itemid: item._id,
+            email:user?.email
+        }
+        console.log(cartinfo)
+        axiospublic.post(`/cards`, cartinfo)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.acknowledged) {
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: `Your ${item.name} successfully added`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                refetch()
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        // console.log()
+    }
     return (
         <div className="min-h-[200px]">
             <HeaderBannar imgg={b}></HeaderBannar>
-            <div className="flex ">
+            <div className="md:flex ">
                 < div className="h-[450px] w-[400px] px-5 flex justify-center ">
-                    <img src={apple} alt="" />
+                    <img src={item?.img} alt="" />
                 </div>
                 <div className="px-5 space-y-3 py-5  w-3/4">
                     <div className="flex ">
-                        <h1 className="text-3xl font-medium text-black mr-5">Apple</h1>
+                        <h1 className="text-3xl font-medium text-black mr-5">{item?.name}</h1>
                         <div className="mt-2"><span className="text-[12px] w-16 h-5 px-3 py-1  border rounded-md font-normal  bg-green-300">In Stock</span></div>
                     </div>
                     <div className="flex">
                         <Rating className="text-[#FF6A00] mr-2"
-                            placeholderRating={4}
+                            placeholderRating={item.rating}
                             emptySymbol={<MdOutlineStarOutline />}
                             placeholderSymbol={<FaStar />}
                             fullSymbol={<FaStar />}
@@ -35,8 +77,8 @@ const Itemdetails = () => {
                         </div>
                     </div>
                     <div className="flex ">
-                        <h5 className="text-base text-gray-500 mr-5">$48 <span className="text-lg font-medium ml-1 text-green-400">$17.10</span></h5>
-                        <div className=""><span className="text-[12px] w-16 h-5 px-3 py-1  border rounded-md text-red-600 font-medium bg-red-200">64% Off</span></div>
+                        <h5 className="text-base text-gray-500 mr-5">${item?.preprice}<span className="text-lg font-medium ml-1 text-green-400">${item?.price}</span></h5>
+                        <div className=""><span className="text-[12px] w-16 h-5 px-3 py-1  border rounded-md text-red-600 font-medium bg-red-200">{item.discount}% Off</span></div>
                     </div>
                     <hr className="w-full" />
                     <div className="flex justify-between">
@@ -61,9 +103,7 @@ const Itemdetails = () => {
                             </div>
                         </div>
                     </div>
-                    <p className="text-gray-400">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                        Dolores corporis dolor odio, officiis eveniet et sapiente ipsam assumenda. Ab, eaque?
-                    </p>
+                    <p className="text-gray-400">{item.sdec}</p>
                     <hr />
                     <div className="flex">
                         <div className="flex gap-2  w-2/12">
@@ -72,12 +112,12 @@ const Itemdetails = () => {
                             <button className="btn bg-gray-300 rounded-full">+</button>
                         </div>
                         <div className="w-8/12">
-                            <button className="btn text-white w-full bg-green-500 py-3 px-5 text-base">Shop now<FaCartPlus></FaCartPlus></button>
+                            <button onClick={handlecart} className="btn text-white w-full bg-green-500 py-3 px-5 text-base">Shop now<FaCartPlus></FaCartPlus></button>
                         </div>
                     </div>
                     <hr />
-                    <h5 className="text-base font-medium text-black">Category: <span className="text-gray-500 font-normal text-[14px]">Fish</span></h5>
-                    <h5 className="text-base font-medium text-black">Tag: <span className="text-gray-500 font-normal text-[14px]">Health</span></h5>
+                    <h5 className="text-base font-medium text-black">Category: <span className="text-gray-500 font-normal text-[14px]">{item?.category}</span></h5>
+                    <h5 className="text-base font-medium text-black">Tag: <span className="text-gray-500 font-normal text-[14px]">{item?.Tag}</span></h5>
                 </div>
             </div>
             <div className="text-center" >
@@ -90,12 +130,7 @@ const Itemdetails = () => {
 
                     <TabPanel className="text-start">
                         <div className="flex justify-between">
-                            <h2 className="w-1/2">Any content 1</h2>
-                            <div className="relative w-1/2" >
-                                <iframe width="420" height="315"
-                                    src="https://youtu.be/J7a9MLbpqZ4?si=qGigpmOY9POYH6jK">
-                                </iframe>
-                            </div>
+                            <h2 className="w-1/2">{item?.fdec}</h2>
 
                         </div>
                     </TabPanel>
@@ -103,7 +138,7 @@ const Itemdetails = () => {
                         <h2>Any content 2</h2>
                     </TabPanel>
                     <TabPanel className="text-start">
-                        <h2>Any content 3</h2>
+                        <h2>{item?.feedback}</h2>
                     </TabPanel>
                 </Tabs>
             </div>
