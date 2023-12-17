@@ -15,6 +15,7 @@ import Mycard from "../Daseboard.jsx/User/Mycard";
 import Ordersitem from "../Daseboard.jsx/User/Ordersitem";
 import Adminhome from "../Daseboard.jsx/Admin/Adminhome";
 import Manageitem from "../Daseboard.jsx/Admin/manageitem";
+import Update from "../Daseboard.jsx/Admin/Update";
 
 const Mybrowser = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const Mybrowser = createBrowserRouter([
           {
             path:'itemmange',
             element:<Manageitem></Manageitem>
+          },
+          {
+            path:'update/:id',
+            element:<Update></Update>
           }
         ]
       }
