@@ -13,6 +13,8 @@ import Daseboard from "../Daseboard.jsx/Daseboard";
 import Userhome from "../Daseboard.jsx/User/Userhome";
 import Mycard from "../Daseboard.jsx/User/Mycard";
 import Ordersitem from "../Daseboard.jsx/User/Ordersitem";
+import Adminhome from "../Daseboard.jsx/Admin/Adminhome";
+import Manageitem from "../Daseboard.jsx/Admin/manageitem";
 
 const Mybrowser = createBrowserRouter([
   {
@@ -63,6 +65,15 @@ const Mybrowser = createBrowserRouter([
           {
             path:'orders',
             element:<Ordersitem></Ordersitem>
+          },
+          //---Admin routers--------->
+          {
+            path:'adminhome',
+            element:<Adminhome></Adminhome>
+          },
+          {
+            path:'itemmange',
+            element:<Manageitem></Manageitem>
           }
         ]
       }

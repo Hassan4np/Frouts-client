@@ -11,15 +11,7 @@ import { Link } from "react-router-dom";
 const FeatureProducts = () => {
     const [alldata, isPending, refetch] = useAllProducts();
     console.log(alldata)
-    const [data, setdata] = useState([]);
-    useEffect(() => {
-        fetch('Projducts.json')
-            .then(res => res.json())
-            .then(data => {
-                setdata(data)
-            })
-    }, [])
-    console.log(data)
+ 
     if (isPending) {
         return <div className="text-center my-10"> <span className="loading loading-ring text-green-600 loading-lg"></span></div>
     }

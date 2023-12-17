@@ -8,7 +8,7 @@ import useAuth from '../Hooks.jsx/useAuth';
 
 const Daseboard = () => {
     const {UserLogout} = useAuth();
-    const isAdmin = false;
+    const isAdmin = true;
     const hangellogout=()=>{
         UserLogout()
         .then(res=>{

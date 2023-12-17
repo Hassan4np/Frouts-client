@@ -41,7 +41,8 @@ const Checkout = () => {
                 useringfo: formData,
                 totalPrice: totalprice,
                 email:user?.email,
-                status:"pending"
+                status:"pending",
+                date: new Date()
     
             }
             console.log(ordersinfo)
