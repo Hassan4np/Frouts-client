@@ -23,7 +23,7 @@ const Review = () => {
                 modules={[Pagination]}
                 className="mySwiper"
             >
-                <SwiperSlide className="mr-10">
+                <SwiperSlide className="mr-10 w-full h-[260px]">
                     <div className="card w-[424px] h-[254px] bg-white shadow-xl border  mt-5 ">
                         <div className="card-body ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="26" viewBox="0 0 32 26" fill="none">

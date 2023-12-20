@@ -24,7 +24,7 @@ const ShopPage = () => {
     const { refetch, data:datas , isLoading } = useQuery({
         queryKey: ['/productscategory', categorydata,sortprice,brand],
         queryFn: async () => {
-            const res = await axousPublic.get(`/productscategory?category=${brand}&price=${sortprice==='High-to-low'?'asc':'desc'}`);
+            const res = await axousPublic.get(`/productscategory?category=${brand||categorydata}&price=${sortprice==='High-to-low'?'asc':'desc'}`);
             return res.data
         }
     })
@@ -62,8 +62,8 @@ const handleCheckboxChange=(brands)=>{
                     <div className="min-h-[200px]" >
                         <h1 className="text-xl font-medium">All Category</h1>
                         <div className="flex text-[14px] font-normal pt-3 ">
-                            <input onChange={()=>handleCheckboxChange('Fish')}  type="checkbox"   className="checkbox checkbox-xs mr-3 mt-1 checkbox-primary" />
-                            <h6>Fish</h6>
+                            <input  onChange={()=>handleCheckboxChange('Fish')}  type="checkbox"   className="checkbox checkbox-xs mr-3 mt-1 checkbox-primary" />
+                            <h6  >Fish</h6>
                         </div>
                         <div className="flex  text-[14px] font-normal pt-3 ">
                         <input onChange={()=>handleCheckboxChange('Vegetable')}  type="checkbox"   className="checkbox checkbox-xs mr-3 mt-1 checkbox-primary" />
@@ -113,7 +113,7 @@ const handleCheckboxChange=(brands)=>{
                 <div className="w-3/4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                         {
-                            datas?.map(item => <Link key={item.name} to={`/itemdetails/${item._id}`}><div id='shopid' className="card w-[312px] h-[406px] bg-base-100 shadow-xl border mt-5 bg-[#E6E6E6)]">
+                            datas?.map(item => <Link key={item.name} to={`/itemdetails/${item._id}`}><div id='shopid' className=" group hover:border-green-500 card w-[312px] h-[406px] bg-base-100 shadow-xl border mt-5 bg-[#E6E6E6)]">
                                 <figure className="px-10 h-[312px] w-[302px] p-5">
                                     <img src={item.img} alt="Shoes" className="rounded-xl" />
                                 </figure>
@@ -121,7 +121,7 @@ const handleCheckboxChange=(brands)=>{
                                     <h2 className="card-title text-[14px] font-normal shoptitle text-[#4D4D4D]">{item.name}</h2>
                                     <div className="flex justify-between">
                                         <p className="text-[16px] font-medium">${item.price}</p>
-                                        <IoBagHandleOutline className="text-2xl shopticone "></IoBagHandleOutline>
+                                        <IoBagHandleOutline className="text-2xl shopticone group-hover:text-green-500 "></IoBagHandleOutline>
                                     </div>
                                     <Rating className="text-[#FF6A00]"
                                         placeholderRating={item.rating}

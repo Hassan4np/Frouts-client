@@ -1,4 +1,6 @@
-import aple from "../../../assets/menus/Image.png"
+import p1 from "../../../assets/menus/Image.png"
+import p2 from "../../../assets/menus/Image (2).png"
+import p3 from "../../../assets/menus/Image (18).png"
 import bannar from "../../../assets/menus/bannar.png"
 import Rating from "react-rating";
 import { MdOutlineStarOutline } from "react-icons/md";
@@ -6,12 +8,12 @@ import { FaStar,FaArrowRight } from "react-icons/fa";
 
 const RecentProducts = () => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-10 gap-2 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-5 gap-2 ">
             <div>
                 <h1 className="text-xl font-medium">Hot Deals</h1>
-                <div className="flex border w-[312px] rounded-md px-5 border-emerald-700 mt-5">
+                <div className="flex border w-[312px] rounded-md px-5 hover:border-emerald-700 mt-5">
                     <div>
-                        <img src={aple} alt="" className="h-24 w-24 mr-2" />
+                        <img src={p1} alt="" className="h-24 w-24 mr-2" />
                     </div>
                     <div className="mt-5">
                         <p className="text-[14px]text-[#4D4D4D] font-normal">Green Apple</p>
@@ -24,12 +26,72 @@ const RecentProducts = () => {
                         />
                     </div>
                 </div>
+                <div className="flex border w-[312px] rounded-md px-5   hover:border-emerald-700 mt-5">
+                    <div>
+                        <img src={p2} alt="" className="h-24 w-24 mr-2" />
+                    </div>
+                    <div className="mt-5">
+                        <p className="text-[14px]text-[#4D4D4D] font-normal">Cron</p>
+                        <h5 className="text-base font-medium">$25</h5>
+                        <Rating className="text-[#FF6A00]"
+                            placeholderRating={4}
+                            emptySymbol={<MdOutlineStarOutline />}
+                            placeholderSymbol={<FaStar />}
+                            fullSymbol={<FaStar />}
+                        />
+                    </div>
+                </div>
+                <div className="flex border w-[312px] rounded-md px-5   hover:border-emerald-700 mt-5">
+                    <div>
+                        <img src={p3} alt="" className="h-24 w-24 mr-2" />
+                    </div>
+                    <div className="mt-5">
+                        <p className="text-[14px]text-[#4D4D4D] font-normal">Tomato</p>
+                        <h5 className="text-base font-medium">$25</h5>
+                        <Rating className="text-[#FF6A00]"
+                            placeholderRating={4}
+                            emptySymbol={<MdOutlineStarOutline />}
+                            placeholderSymbol={<FaStar />}
+                            fullSymbol={<FaStar />}
+                        />
+                    </div>
+                </div>
             </div>
             <div>
                 <h1 className="text-xl font-medium">Best Seller</h1>
-                <div className="flex border w-[312px] rounded-md px-5  mt-5">
+                <div className="flex border w-[312px] rounded-md px-5  mt-5 hover:border-emerald-700">
                     <div>
-                        <img src={aple} alt="" className="h-24 w-24 mr-2" />
+                        <img src={p2} alt="" className="h-24 w-24 mr-2" />
+                    </div>
+                    <div className="mt-5">
+                        <p className="text-[14px] text-[#4D4D4D] font-normal">Cron</p>
+                        <h5 className="text-base font-medium">$25</h5>
+                        <Rating className="text-[#FF6A00]"
+                            placeholderRating={4}
+                            emptySymbol={<MdOutlineStarOutline />}
+                            placeholderSymbol={<FaStar />}
+                            fullSymbol={<FaStar />}
+                        />
+                    </div>
+                </div>
+                <div className="flex border w-[312px] rounded-md px-5  mt-5 hover:border-emerald-700">
+                    <div>
+                        <img src={p3} alt="" className="h-24 w-24 mr-2" />
+                    </div>
+                    <div className="mt-5">
+                        <p className="text-[14px] text-[#4D4D4D] font-normal">Tomato</p>
+                        <h5 className="text-base font-medium">$25</h5>
+                        <Rating className="text-[#FF6A00]"
+                            placeholderRating={4}
+                            emptySymbol={<MdOutlineStarOutline />}
+                            placeholderSymbol={<FaStar />}
+                            fullSymbol={<FaStar />}
+                        />
+                    </div>
+                </div>
+                <div className="flex border w-[312px] rounded-md px-5  mt-5 hover:border-emerald-700">
+                    <div>
+                        <img src={p1} alt="" className="h-24 w-24 mr-2" />
                     </div>
                     <div className="mt-5">
                         <p className="text-[14px] text-[#4D4D4D] font-normal">Green Apple</p>
@@ -45,12 +107,42 @@ const RecentProducts = () => {
             </div>
             <div>
                 <h1 className="text-xl font-medium">Top Rated</h1>
-                <div className="flex border w-[312px] rounded-md px-5 mt-5">
+                <div className="flex border w-[312px] rounded-md px-5 mt-5 hover:border-emerald-700">
                     <div>
-                        <img src={aple} alt="" className="h-24 w-24 mr-2" />
+                        <img src={p3} alt="" className="h-24 w-24 mr-2" />
+                    </div>
+                    <div className="mt-5">
+                        <p className="text-[14px] text-[#4D4D4D] font-normal">Tomato</p>
+                        <h5 className="text-base font-medium">$25</h5>
+                        <Rating className="text-[#FF6A00]"
+                            placeholderRating={4}
+                            emptySymbol={<MdOutlineStarOutline />}
+                            placeholderSymbol={<FaStar />}
+                            fullSymbol={<FaStar />}
+                        />
+                    </div>
+                </div>
+                <div className="flex border w-[312px] rounded-md px-5 mt-5 hover:border-emerald-700">
+                    <div>
+                        <img src={p1} alt="" className="h-24 w-24 mr-2" />
                     </div>
                     <div className="mt-5">
                         <p className="text-[14px] text-[#4D4D4D] font-normal">Green Apple</p>
+                        <h5 className="text-base font-medium">$25</h5>
+                        <Rating className="text-[#FF6A00]"
+                            placeholderRating={4}
+                            emptySymbol={<MdOutlineStarOutline />}
+                            placeholderSymbol={<FaStar />}
+                            fullSymbol={<FaStar />}
+                        />
+                    </div>
+                </div>
+                <div className="flex border w-[312px] rounded-md px-5 mt-5 hover:border-emerald-700">
+                    <div>
+                        <img src={p2} alt="" className="h-24 w-24 mr-2" />
+                    </div>
+                    <div className="mt-5">
+                        <p className="text-[14px] text-[#4D4D4D] font-normal">Cron</p>
                         <h5 className="text-base font-medium">$25</h5>
                         <Rating className="text-[#FF6A00]"
                             placeholderRating={4}

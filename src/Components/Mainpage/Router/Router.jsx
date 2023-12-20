@@ -16,6 +16,7 @@ import Ordersitem from "../Daseboard.jsx/User/Ordersitem";
 import Adminhome from "../Daseboard.jsx/Admin/Adminhome";
 import Manageitem from "../Daseboard.jsx/Admin/manageitem";
 import Update from "../Daseboard.jsx/Admin/Update";
+import Catehoryitem from "../Brand/Catehoryitem";
 
 const Mybrowser = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const Mybrowser = createBrowserRouter([
       {
         path: "/shop",
         element: <ShopPage></ShopPage>
+      },
+      {
+        path:'/categoryshop/:id',
+        element:<Catehoryitem></Catehoryitem>
       },
       {
         path: '/itemdetails/:id',

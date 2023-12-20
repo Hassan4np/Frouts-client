@@ -20,7 +20,7 @@ const FeatureProducts = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
             {
                 alldata?.map(item => <Link to={`/itemdetails/${item._id}`} key={item._id}>
-                    <div className="card w-[248px] h-[339px] bg-base-100 shadow-xl border mt-5 bg-[#E6E6E6)]">
+                    <div className=" group hover:border-green-500 card w-[248px] h-[339px] bg-base-100 shadow-xl border mt-5 bg-[#E6E6E6)]">
                         <figure className="px-10 h-[246px] w-[246px] pt-10">
                             <img src={item.img} alt="Shoes" className="rounded-xl" />
                         </figure>
@@ -28,7 +28,7 @@ const FeatureProducts = () => {
                             <h2 className="card-title text-[14px] font-normal text-[#4D4D4D]">{item.name}</h2>
                             <div className="flex justify-between">
                                 <p className="text-[16px] font-medium">${item.price}</p>
-                                <IoBagHandleOutline className="text-2xl"></IoBagHandleOutline>
+                                <IoBagHandleOutline className="text-2xl group-hover:text-green-500 "></IoBagHandleOutline>
                             </div>
                             <Rating className="text-[#FF6A00]"
                                 placeholderRating={item.rating}

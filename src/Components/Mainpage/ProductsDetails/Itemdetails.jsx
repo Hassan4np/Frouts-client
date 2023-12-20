@@ -21,9 +21,11 @@ const Itemdetails = () => {
     const {user} = useAuth();
 
     console.log(id)
-    const [item, refetch] = useItem(id);
+    const [item, refetch,isLoading] = useItem(id);
     console.log(item)
-
+    if (isLoading) {
+        return <div className="text-center my-10"> <span className="loading loading-ring text-green-600 loading-lg"></span></div>
+    }
     const handlecart = () => {
         const cartinfo = {
             name: item.name,
