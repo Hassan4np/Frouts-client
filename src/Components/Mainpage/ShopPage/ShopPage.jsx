@@ -8,29 +8,33 @@ import aple from "../../../assets/menus/Image.png"
 import { IoBagHandleOutline } from "react-icons/io5";
 import {  useState } from "react";
 import "./Shoppage.css"
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import useAxousPublic from "../Hooks.jsx/useAxousPublic";
 import { useQuery } from "@tanstack/react-query";
 
 
 const ShopPage = () => {
+    const [brand,setbrand] = useState('');
+    const {id} = useParams();
     const [categorydata, setcategorydata] = useState('');
     const [sortprice, setsortprice] = useState('');
 
     const axousPublic = useAxousPublic();
     const { refetch, data:datas , isLoading } = useQuery({
-        queryKey: ['/productscategory', categorydata,sortprice],
+        queryKey: ['/productscategory', categorydata,sortprice,brand],
         queryFn: async () => {
-            const res = await axousPublic.get(`/productscategory?category=${categorydata}&price=${sortprice==='High-to-low'?'asc':'desc'}`);
+            const res = await axousPublic.get(`/productscategory?category=${brand}&price=${sortprice==='High-to-low'?'asc':'desc'}`);
             return res.data
         }
     })
-
+console.log(brand)
   console.log(sortprice)
     console.log(datas)
     console.log(categorydata)
-
+const handleCheckboxChange=(brands)=>{
+    setbrand(brands)
+}
     return (
         <div className="min-h-[450px]">
             <HeaderBannar imgg={b}></HeaderBannar>
@@ -58,11 +62,11 @@ const ShopPage = () => {
                     <div className="min-h-[200px]" >
                         <h1 className="text-xl font-medium">All Category</h1>
                         <div className="flex text-[14px] font-normal pt-3 ">
-                            <input type="checkbox" checked="checked" className="checkbox checkbox-xs mr-3 mt-1" />
+                            <input onChange={()=>handleCheckboxChange('Fish')}  type="checkbox"   className="checkbox checkbox-xs mr-3 mt-1 checkbox-primary" />
                             <h6>Fish</h6>
                         </div>
                         <div className="flex  text-[14px] font-normal pt-3 ">
-                            <input type="checkbox" checked="checked" className="checkbox checkbox-xs mr-3 mt-1" />
+                        <input onChange={()=>handleCheckboxChange('Vegetable')}  type="checkbox"   className="checkbox checkbox-xs mr-3 mt-1 checkbox-primary" />
                             <h6>Vegetable</h6>
                         </div>
                     </div>

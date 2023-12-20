@@ -56,7 +56,6 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1">
                        <NavLink to="/"> <li><a>Home</a></li></NavLink>
                        <NavLink to="/shop"> <li><a>Shop</a></li></NavLink>
-                       <NavLink to="/"> <li><a>Home</a></li></NavLink>
                        {
                         user?<button onClick={hangellogout}><li><a>logout</a></li></button>:<NavLink to="/login"> <li><a>Login</a></li></NavLink>
                        }

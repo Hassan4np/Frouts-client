@@ -3,11 +3,13 @@ import { FaEye } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 import useAuth from '../Hooks.jsx/useAuth';
 import { useState } from 'react';
+import useAxousPublic from '../Hooks.jsx/useAxousPublic';
 
 
 const Signup = () => {
     const { UserSignup } = useAuth();
     const [error, seterror] = useState('');
+    const axouPublic = useAxousPublic();
     const handlesignup = (e) => {
         e.preventDefault();
         const from = e.target;
@@ -20,7 +22,14 @@ const Signup = () => {
         }
         UserSignup(email, password1)
             .then(res => {
-                console.log(res.user)
+                console.log(res.user);
+                axouPublic.post('/users', email)
+                    .then(res => {
+                        console.log(res.data)
+                    }).catch(error => {
+                        console.log(error)
+                    })
+
             }).catch(error => {
                 seterror(error.message)
             })

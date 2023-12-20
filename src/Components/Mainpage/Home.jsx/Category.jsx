@@ -14,6 +14,7 @@ import 'swiper/css/pagination';
 
 // import required modules
 import { Pagination } from 'swiper/modules';
+import { Link } from "react-router-dom"
 const Category = () => {
     return (
         <div className="py-10">
@@ -28,15 +29,17 @@ const Category = () => {
                 className="mySwiper"
             >
                 <SwiperSlide className="">
-                    <div className="h-[210px] w-[200px] border  border-emerald-700">
-                        <div className="w-[80px] h-[80px] mx-auto "  >
-                            <img src={p5} alt="" className="pt-8" />
+                    <Link to={`/shop`}>
+                        <div className="h-[210px] w-[200px] border  border-emerald-700">
+                            <div className="w-[80px] h-[80px] mx-auto "  >
+                                <img src={p5} alt="" className="pt-8" />
+                            </div>
+                            <div className="text-center pt-7">
+                                <h1 className="text-[18px] font-medium text-green-500">vegetables</h1>
+                                <p className="text-[14px] font-normal text-[#808080]">Products</p>
+                            </div>
                         </div>
-                        <div className="text-center pt-7">
-                            <h1 className="text-[18px] font-medium text-green-500">vegetables</h1>
-                            <p className="text-[14px] font-normal text-[#808080]">Products</p>
-                        </div>
-                    </div>
+                    </Link>
                 </SwiperSlide>
                 <SwiperSlide className="">
                     <div className="h-[210px] w-[200px] border">
@@ -92,7 +95,7 @@ const Category = () => {
                             <p className="text-[14px] font-normal text-[#808080]">Products</p>
                         </div>
                     </div>
-                </SwiperSlide>             
+                </SwiperSlide>
             </Swiper>
         </div>
     );
