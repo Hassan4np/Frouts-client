@@ -2,13 +2,15 @@
 import HeaderBannar from '../Global/HeaderBannar';
 import b from "../../../assets/category/daseboard.png"
 import { Link, Outlet } from 'react-router-dom';
-import { FaAd, FaCalendar, FaList } from 'react-icons/fa';
+import { FaAd, FaCalendar,FaShoppingCart  } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { IoIosLogOut,IoMdSettings } from "react-icons/io";
+import { CgProfile } from "react-icons/cg";
 import useAuth from '../Hooks.jsx/useAuth';
 
 const Daseboard = () => {
     const {UserLogout} = useAuth();
-    const isAdmin = true;
+    const isAdmin = false;
     const hangellogout=()=>{
         UserLogout()
         .then(res=>{
@@ -36,22 +38,22 @@ const Daseboard = () => {
                           
                         </> : <div >
                             <ul className="menu p-2">
-                                <li className=" border bg-white rounded-md font-normal text-[#666]  text-base"><Link to="/daseboard/userhome"><AiOutlineShoppingCart></AiOutlineShoppingCart>MyProfile</Link></li>
+                                <li className=" border bg-white rounded-md font-normal text-[#666]  text-base"><Link to="/daseboard/userhome"><CgProfile />MyProfile</Link></li>
                             </ul>
                             <ul className="menu p-2">
                                 <li className=" border bg-white rounded- font-normal text-[#666]  text-base"><Link to="/daseboard/orders"><FaCalendar></FaCalendar>Orders</Link></li>
                             </ul>
                             <ul className="menu p-2">
-                                <li className=" border bg-white rounded- font-normal text-[#666]  text-base"><Link to="/daseboard/carts"><FaAd></FaAd>Shopping cart</Link></li>
+                                <li className=" border bg-white rounded- font-normal text-[#666]  text-base"><Link to="/daseboard/carts"><FaShoppingCart />Shopping cart</Link></li>
                             </ul>
                             <ul className="menu p-2">
-                                <li className=" border bg-white rounded- font- text-[#666]  text-base"><Link to="/daseboard/setting"><FaList></FaList>Setting</Link></li>
+                                <li className=" border bg-white rounded- font- text-[#666]  text-base"><Link to="/daseboard/setting"><IoMdSettings />Setting</Link></li>
                             </ul>
                         </div>
 
                     }
                     <ul className="menu p-2" onClick={hangellogout}>
-                        <li className=" border bg-white rounded-md  text-base text-[#]"><button><FaList></FaList>logout</button></li>
+                        <li className=" border bg-white rounded-md  text-base text-[#]"><button><IoIosLogOut />Logout</button></li>
                     </ul>
                 </div>
                 <div className='my-5 w-4/5'>

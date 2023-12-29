@@ -46,8 +46,9 @@ const Itemdetails = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    refetch()
                 }
-                refetch()
+              
             })
             .catch(error => {
                 console.log(error)
@@ -122,7 +123,7 @@ const Itemdetails = () => {
                     <h5 className="text-base font-medium text-black">Tag: <span className="text-gray-500 font-normal text-[14px]">{item?.Tag}</span></h5>
                 </div>
             </div>
-            <div className="text-center" >
+            <div className="" >
                 <Tabs className="min-h-[150px]">
                     <TabList>
                         <Tab>Descriptions</Tab>
@@ -133,7 +134,6 @@ const Itemdetails = () => {
                     <TabPanel className="text-start">
                         <div className="flex justify-between">
                             <h2 className="w-1/2">{item?.fdec}</h2>
-
                         </div>
                     </TabPanel>
                     <TabPanel className="text-start">

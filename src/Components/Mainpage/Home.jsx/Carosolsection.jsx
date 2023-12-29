@@ -16,7 +16,7 @@ const Carosolsection = () => {
                                      <h6 className="text-3xl font-semibold">Sale up to <span className="text-[#FF8A00]">30% OFF</span></h6>
                                 <p className="text-base font-normal text-black">Free shipping on all your order. we deliver, you enjoy</p>
                                 <div className="mt-5 ">
-                                    <button className="btn bg-green-500 rounded-2xl px-4 py-3 ">shop now</button>
+                                    <button className="btn bg-green-500 rounded-2xl px-4 py-3 text-base font-bold ">shop now</button>
                                 
                                 </div>
                             </div>

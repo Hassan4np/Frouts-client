@@ -14,6 +14,7 @@ const useCards = (email) => {
         }
     })
     console.log(cards)
+    refetch()
     return [cards, refetch, isLoading]
 };
 
