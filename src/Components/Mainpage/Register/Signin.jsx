@@ -34,11 +34,11 @@ const Signin = () => {
         UserGoogleLogin()
             .then(res => {
                 console.log(res.user)
-                navigate(loc.state ? loc.state : '/')
-            }).catch(error => {
+            })
+            navagater(loc.state ? loc.state : "/")
+            .catch(error => {
                 console.log(error)
                 seterror(error.message)
-
             })
     }
     return (
