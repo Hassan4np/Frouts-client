@@ -14,7 +14,7 @@ const Review = () => {
     return (
         <div className="py-10">
             <Swiper
-                slidesPerView={4}
+                slidesPerView={3}
                 spaceBetween={60}
                 centeredSlides={true}
                 // pagination={{

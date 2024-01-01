@@ -1,6 +1,6 @@
 
-import { FaEye } from 'react-icons/fa';
-import { Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from '../Hooks.jsx/useAuth';
 import { useState } from 'react';
 import useAxousPublic from '../Hooks.jsx/useAxousPublic';
@@ -8,6 +8,10 @@ import useAxousPublic from '../Hooks.jsx/useAxousPublic';
 
 const Signup = () => {
     const { UserSignup } = useAuth();
+    const loc = useLocation();
+    const navagater = useNavigate()
+    const [show, setshow] = useState(false)
+    const [shows, setshows] = useState(false)
     const [error, seterror] = useState('');
     const axouPublic = useAxousPublic();
     const handlesignup = (e) => {
@@ -26,9 +30,13 @@ const Signup = () => {
                 axouPublic.post('/users', email)
                     .then(res => {
                         console.log(res.data)
-                    }).catch(error => {
+                    })
+
+                    navagater(loc.state?loc.state:"/login")
+                    .catch(error => {
                         console.log(error)
                     })
+
 
             }).catch(error => {
                 seterror(error.message)
@@ -52,18 +60,24 @@ const Signup = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" name="password1" className="input input-bordered" required />
-                            <FaEye className="absolute top-14 right-4"></FaEye>
+                            <input type={`${show ? 'text' : 'password'}`} placeholder="password" name="password1" className="input input-bordered" required />
+                            {
+                                show ? <FaEye onClick={() => setshow(!show)} className="absolute top-14 right-4"></FaEye> :
+                                    <FaEyeSlash onClick={() => setshow(!show)} className="absolute top-14 right-4"></FaEyeSlash>
+                            }
                         </div>
                         <div className="form-control relative ">
                             <label className="label">
                                 <span className="label-text">Confirm Password</span>
                             </label>
-                            <input type="password" placeholder="Confirm Password" name="ConfirmPassword2" className="input input-bordered" required />
-                            <FaEye className="absolute top-14 right-4"></FaEye>
+                            <input type={`${shows ? 'text' : 'password'}`} placeholder="Confirm Password" name="ConfirmPassword2" className="input input-bordered" required />
+                            {
+                                shows ? <FaEye onClick={() => setshows(!shows)} className="absolute top-14 right-4"></FaEye> :
+                                    <FaEyeSlash onClick={() => setshows(!shows)} className="absolute top-14 right-4"></FaEyeSlash>
+                            }
                             <div className='flex mt-2'>
-                                <form>
-                                    <input type="checkbox" checked="checked" className="checkbox checkbox-sm mr-2 " />
+                                <form className='flex'>
+                                    <input type="checkbox" className=" mr-2 " />
                                     <p className='text-[14px] font-normal text-gray-500'>Accept all terms & Conditions</p>
                                 </form>
                             </div>

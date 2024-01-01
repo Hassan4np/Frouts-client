@@ -8,11 +8,11 @@ import { useState } from "react";
 
 
 const Signin = () => {
-    const { UserLogin,UserGoogleLogin } = useAuth();
+    const { UserLogin, UserGoogleLogin } = useAuth();
     const [error, seterror] = useState();
     const [show, setshow] = useState(false)
     const loc = useLocation();
-    const navigate = useNavigate();
+    const navagater = useNavigate();
     const handlelogin = (e) => {
         e.preventDefault();
         const from = e.target;
@@ -23,23 +23,23 @@ const Signin = () => {
         UserLogin(email, password)
             .then(res => {
                 console.log(res.user)
-                navigate(loc.state ? loc.state : '/')
-
-            }).catch(error => {
+            })
+             navagater(loc.state ? loc.state : "/")
+            .catch(error => {
                 seterror(error.message)
             })
     };
-    const hendlegoogle=()=>{
+    const hendlegoogle = () => {
         //todo
         UserGoogleLogin()
-        .then(res=>{
-            console.log(res.user)
-            navigate(loc.state ? loc.state : '/')
-        }).catch(error=>{
-            console.log(error)
-            seterror(error.message)
+            .then(res => {
+                console.log(res.user)
+                navigate(loc.state ? loc.state : '/')
+            }).catch(error => {
+                console.log(error)
+                seterror(error.message)
 
-        })
+            })
     }
     return (
         <div>
@@ -49,14 +49,14 @@ const Signin = () => {
                     <div className="card shrink-0 w-full h-[450px] md:w-[520px] md:h-[450px] shadow-2xl  bg-[#F2F2F2] mt-5">
                         <h1 className="text-3xl text-center font-semibold pt-3">Login</h1>
                         <div className="form-control px-7 mt-2">
-                        <button onClick={hendlegoogle}>
-                            <div className='flex justify-center items-center h-10 rounded-md border-2 p-6 bg-gray-400'>
-                                <div className='flex space-x-2'>
-                                    <FcGoogle className='mt-1 text-2xl' ></FcGoogle>
-                                    <p className='text-xl font-bold'>Google</p></div>
-                            </div>
-                        </button>
-                    </div>
+                            <button onClick={hendlegoogle}>
+                                <div className='flex justify-center items-center h-10 rounded-md border-2 p-6 bg-gray-400'>
+                                    <div className='flex space-x-2'>
+                                        <FcGoogle className='mt-1 text-2xl' ></FcGoogle>
+                                        <p className='text-xl font-bold'>Google</p></div>
+                                </div>
+                            </button>
+                        </div>
 
                         <form className="card-body -mt-5" onSubmit={handlelogin} >
                             <div className="form-control">

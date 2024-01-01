@@ -55,6 +55,7 @@ const Category = () => {
                     </Link>
                 </SwiperSlide>
                 <SwiperSlide className="">
+                <Link to={`/categoryshop/${'Meat'}`}>
                     <div className="h-[210px] w-[200px] border  hover:border-emerald-700">
                         <div className="w-[80px] h-[80px] mx-auto "  >
                             <img src={p3} alt="" className="pt-8" />
@@ -64,8 +65,10 @@ const Category = () => {
                             <p className="text-[14px] font-normal text-[#808080]">Products</p>
                         </div>
                     </div>
+                    </Link>
                 </SwiperSlide>
                 <SwiperSlide className="">
+                <Link to={`/categoryshop/${'Sancks'}`}>
                     <div className="h-[210px] w-[200px] border  hover:border-emerald-700">
                         <div className="w-[80px] h-[80px] mx-auto "  >
                             <img src={p4} alt="" className="pt-8" />
@@ -75,8 +78,10 @@ const Category = () => {
                             <p className="text-[14px] font-normal text-[#808080]">Products</p>
                         </div>
                     </div>
+                    </Link>
                 </SwiperSlide>
                 <SwiperSlide className="">
+                <Link to={`/categoryshop/${'Fruit'}`}>
                     <div className="h-[210px] w-[200px] border">
                         <div className="w-[80px] h-[80px] mx-auto "  >
                             <img src={p1} alt="" className="pt-8" />
@@ -86,8 +91,10 @@ const Category = () => {
                             <p className="text-[14px] font-normal text-[#808080]">Products</p>
                         </div>
                     </div>
+                    </Link>
                 </SwiperSlide>
                 <SwiperSlide className="">
+                <Link to={`/categoryshop/${'Drinks'}`}>
                     <div className="h-[210px] w-[200px] border">
                         <div className="w-[80px] h-[80px] mx-auto "  >
                             <img src={p6} alt="" className="pt-8" />
@@ -97,6 +104,7 @@ const Category = () => {
                             <p className="text-[14px] font-normal text-[#808080]">Products</p>
                         </div>
                     </div>
+                    </Link>
                 </SwiperSlide>
             </Swiper>
         </div>
