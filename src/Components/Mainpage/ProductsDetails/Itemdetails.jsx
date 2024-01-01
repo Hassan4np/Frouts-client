@@ -11,6 +11,7 @@ import useItem from "../Hooks.jsx/useItem";
 import { axiospublic } from "../Hooks.jsx/useAxousPublic";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks.jsx/useAuth";
+import { useState } from "react";
 
 
 
@@ -18,21 +19,27 @@ import useAuth from "../Hooks.jsx/useAuth";
 
 const Itemdetails = () => {
     const { id } = useParams();
-    const {user} = useAuth();
+    const { user } = useAuth();
+    const [buttonvalue, setbuttonvalue] = useState(1);
 
     console.log(id)
-    const [item, refetch,isLoading] = useItem(id);
+    const [item, refetch, isLoading] = useItem(id);
     console.log(item)
     if (isLoading) {
         return <div className="text-center my-10"> <span className="loading loading-ring text-green-600 loading-lg"></span></div>
     }
+    const allprice = (item?.price * buttonvalue)
+    console.log(allprice)
     const handlecart = () => {
         const cartinfo = {
             name: item.name,
             img: item.img,
             price: item.price,
             itemid: item._id,
-            email:user?.email
+            email: user?.email,
+            allprice:allprice,
+            quantity:buttonvalue,
+
         }
         console.log(cartinfo)
         axiospublic.post(`/cards`, cartinfo)
@@ -48,12 +55,21 @@ const Itemdetails = () => {
                     });
                     refetch()
                 }
-              
+
             })
             .catch(error => {
                 console.log(error)
             })
         // console.log()
+    }
+    const incressvalue = (value) => {
+        console.log(value)
+        setbuttonvalue(value + 1)
+    }
+    const discressvalue = (value) => {
+        if (value > 0) {
+            setbuttonvalue(value - 1)
+        }
     }
     return (
         <div className="min-h-[200px]">
@@ -110,9 +126,9 @@ const Itemdetails = () => {
                     <hr />
                     <div className="flex">
                         <div className="flex gap-2  w-2/12">
-                            <button className="btn bg-gray-300 rounded-full">-</button>
-                            <p className="mt-3">5</p>
-                            <button className="btn bg-gray-300 rounded-full">+</button>
+                            <button onClick={() => discressvalue(buttonvalue)} className="btn bg-gray-300 rounded-full">-</button>
+                            <p className="mt-3">{buttonvalue}</p>
+                            <button onClick={() => incressvalue(buttonvalue)} className="btn bg-gray-300 rounded-full">+</button>
                         </div>
                         <div className="w-8/12">
                             <button onClick={handlecart} className="btn text-white w-full bg-green-500 py-3 px-5 text-base">Shop now<FaCartPlus></FaCartPlus></button>

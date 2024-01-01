@@ -16,7 +16,7 @@ const Cart = () => {
     const [quantity, setquantity] = useState(1);
 
     const axoussecrt = useAxousSecret();
-   
+
     const handledelete = (id) => {
         console.log(id)
         axoussecrt.delete(`/cards/${id}`)
@@ -39,7 +39,7 @@ const Cart = () => {
             })
     }
     console.log(quantity)
-    const totalprice = cards?.reduce((total, current) => total + current.price, 0).toFixed(2);
+    const totalprice = cards?.reduce((total, current) => total + current?.allprice,0).toFixed(2);
     console.log(totalprice)
     return (
         <div className="min-h-[200px] py-10">
@@ -53,7 +53,8 @@ const Cart = () => {
                                 <tr className="uppercase">
                                     <th >Priduct</th>
                                     <th>Price</th>
-
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
                                     <th>Remove</th>
                                 </tr>
                             </thead>
@@ -76,6 +77,14 @@ const Cart = () => {
                                             ${it.price}
 
                                         </td>
+                                        <td>
+                                        {it?.quantity}
+
+                                    </td>
+                                    <td>
+                                        ${it?.allprice}
+
+                                    </td>
 
                                         <th>
                                             <button onClick={() => handledelete(it?._id)} className="btn text-red-500 btn-sm">x</button>
@@ -107,7 +116,7 @@ const Cart = () => {
                             <div className="py-4">
                                 {
                                     cards?.length > 0 ? <Link to="/checkout">  <button className="btn text-base font-semibold rounded-3xl text-white bg-green-500 mt-2 w-full">Proceed to checkout</button></Link> :
-                                          <button disabled className="btn text-base font-semibold rounded-3xl text-white bg-green-500 mt-2 w-full">Proceed to checkout</button>
+                                        <button disabled className="btn text-base font-semibold rounded-3xl text-white bg-green-500 mt-2 w-full">Proceed to checkout</button>
                                 }
                             </div>
                         </div>

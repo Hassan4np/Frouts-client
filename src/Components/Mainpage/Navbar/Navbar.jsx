@@ -60,7 +60,7 @@ const Navbar = () => {
                                 user && <NavLink to="/daseboard/userhome"> <li><a>Daseboard</a></li></NavLink>
                             }
                                {
-                                user ? <button  onClick={hangellogout}><li><a>logout</a></li></button  > : <NavLink to="/login" > <li><a>Login</a></li></NavLink>
+                                user ? <button  onClick={hangellogout}><li><a>Logout</a></li></button  > : <NavLink to="/login" > <li><a>Login</a></li></NavLink>
                             }
 
                         </ul>
@@ -83,7 +83,7 @@ const Navbar = () => {
                     <TbPhoneCall className="text-2xl" />
                     <p className="text-base font-medium mr-2">+801723461543</p>
                     {
-                        user ? <button className="px-3 py-1 text-black font-bold bg-white rounded-xl hidden lg:block" onClick={hangellogout}><a>logout</a></button  > : <NavLink to="/login" className='px-3 hidden lg:block py-1 text-black font-bold bg-white rounded-xl'> <a>Login</a></NavLink>
+                        user ? <button className="px-3 py-1 text-black font-bold bg-white rounded-xl hidden lg:block" onClick={hangellogout}><a>Logout</a></button  > : <NavLink to="/login" className='px-3 hidden lg:block py-1 text-black font-bold bg-white rounded-xl'> <a>Login</a></NavLink>
                     }
 
 

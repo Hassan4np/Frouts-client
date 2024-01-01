@@ -31,7 +31,7 @@ const Mycard = () => {
                 console.log(error)
             })
     }
-    const totalprice = cards?.reduce((total, current) => total + current.price, 0).toFixed(2);
+    const totalprice = cards?.reduce((total, current) => total + current?.allprice,0).toFixed(2);
     return (
         <div className="flex  gap-4">
             <div className="w-3/4">
@@ -42,6 +42,8 @@ const Mycard = () => {
                             <tr className="uppercase">
                                 <th >Priduct</th>
                                 <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
 
                                 <th>Remove</th>
                             </tr>
@@ -62,7 +64,15 @@ const Mycard = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        ${it.price}
+                                        ${it?.price}
+
+                                    </td>
+                                    <td>
+                                        {it?.quantity}
+
+                                    </td>
+                                    <td>
+                                        ${it?.allprice}
 
                                     </td>
 
